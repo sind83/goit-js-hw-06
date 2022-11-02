@@ -3,10 +3,13 @@ function getRandomHexColor() {
 }
 
 const boxesArea = document.querySelector("div#boxes");
-const createBtn = document.querySelectorAll("button")[0];
-const removeBtn = document.querySelectorAll("button")[1];
-const input = document.querySelectorAll("input");
-const controls = document.querySelectorAll("div#controls")
+const createBtn = document.querySelector('[data-create]');
+const removeBtn = document.querySelector('[data-destroy]');
+const input = document.querySelector('input[type="number"]');
+const controls = document.querySelectorAll("div#controls");
+const inpMin = input.getAttribute('min');
+const inpMax = input.getAttribute('max');
+
 
 // console.log(createBtn, removeBtn);
 const size = (30);
@@ -20,29 +23,22 @@ const createBox = () => {
   return box
 }
 
-
-
 createBtn.addEventListener("click", () => {
-  const amount = input[0].value;
-  console.log(input[0].value);
-  createBox(amount);
-  const boxes = Array.from({ length: amount }, createBox);
+  if (input.value < parseInt(inpMin) || input.value > parseInt(inpMax)) {
+    return alert(`Entered value should be in range: ${inpMin} - ${inpMax}`);
+  } else {
+    const amount = input.value;
+    const boxes = Array.from({ length: amount }, createBox);
 
-  for (let i = 0; i < boxes.length; i++) {
-    boxes[i].style.width = ` ${size+(10 * i)}px`;
-    boxes[i].style.height = `${size + (10 * i)}px`;
+    for (let i = 0; i < boxes.length; i++) {
+      boxes[i].style.width = ` ${size + (10 * i)}px`;
+      boxes[i].style.height = `${size + (10 * i)}px`;
+    }
+    // console.log(boxes, boxes[0].style.width);
+    boxesArea.append(...boxes);
   }
-console.log(boxes, boxes[0].style.width);
-const fragment = document.createDocumentFragment();
-  
-  fragment.append(...boxes);
-  console.log(boxes);
-  console.log(fragment);
-boxesArea.append(fragment);
 });
 
 removeBtn.addEventListener("click", () => {
-  while (boxesArea.lastChild) {
-    boxesArea.removeChild(boxesArea.lastChild)
-  }
+    boxesArea.innerHTML = '';
 });

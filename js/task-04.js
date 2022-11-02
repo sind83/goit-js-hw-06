@@ -1,13 +1,14 @@
 let counterValue = 0;
 const spanValue = document.querySelector("span#value");
 
-const buttons = document.querySelectorAll("button");
+const decBtn = document.querySelectorAll('button[data-action="decrement"]');
+const incBtn = document.querySelectorAll('button[data-action="increment"]');
 
-buttons[0].addEventListener("click", ()=>{
+decBtn.addEventListener("click", ()=>{
     counterValue-=1;
     return spanValue.textContent=counterValue.toString();
 });
-buttons[1].addEventListener("click", ()=>{
+incBtn.addEventListener("click", ()=>{
     counterValue+=1;
     return spanValue.textContent=counterValue.toString();
 });

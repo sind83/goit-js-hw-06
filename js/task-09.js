@@ -6,8 +6,18 @@ const btn = document.querySelector("button.change-color");
 const body = document.querySelector("body");
 const span = document.querySelector("span.color");
 
-btn.addEventListener("click", ()=>{
- const hexColor = getRandomHexColor();
-  span.textContent=hexColor;
+
+window.addEventListener("load", () => {
+  const hexColor = getRandomHexColor();
+  span.textContent=hexColor.toUpperCase();
  body.style.backgroundColor = hexColor;
+});
+
+console.log(span.textContent);
+
+btn.addEventListener("click",() => {
+ const hexColor = getRandomHexColor();
+  span.textContent=hexColor.toUpperCase();
+ body.style.backgroundColor = hexColor;
+  
 });
