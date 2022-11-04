@@ -1,8 +1,8 @@
 let counterValue = 0;
 const spanValue = document.querySelector("span#value");
 
-const decBtn = document.querySelectorAll('button[data-action="decrement"]');
-const incBtn = document.querySelectorAll('button[data-action="increment"]');
+const decBtn = document.querySelector('button[data-action="decrement"]');
+const incBtn = document.querySelector('button[data-action="increment"]');
 
 decBtn.addEventListener("click", ()=>{
     counterValue-=1;
